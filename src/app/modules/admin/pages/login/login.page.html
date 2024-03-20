@@ -1,1 +1,18 @@
-<h1>login</h1>
+
+<div id="container">
+  <form>
+    <h1>login</h1>
+    <div>
+      <label for="email">correo: </label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="password">contraseña: </label>
+      <input [type]="hidePassword ? 'password' : 'text'" id="password" name="password" required>
+      <button type="button" (click)="togglePasswordVisibility()">
+        <img [src]="passwordIcon" id="svg" />
+      </button>
+    </div>
+    <button type="submit">login</button>
+  </form>
+</div>

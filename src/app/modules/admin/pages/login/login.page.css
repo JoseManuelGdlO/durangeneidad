@@ -1,0 +1,34 @@
+#container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+form{
+  background-color: beige;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 50px;
+}
+
+#svg{
+  width: 15px;
+}
+
+@media screen and (max-width: 700px) {
+  #container{
+    flex-direction: column;
+  }
+
+  form{
+    width: 100%;
+    padding: 50px;
+  }
+
+}
+
