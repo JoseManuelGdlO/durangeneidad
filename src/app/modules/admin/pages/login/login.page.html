@@ -1,18 +1,19 @@
-
 <div id="container">
-  <form>
-    <h1>login</h1>
-    <div>
-      <label for="email">correo: </label>
-      <input type="email" id="email" name="email" required>
+  <form class="shadow">
+    <h1 class="mb-4 text-center">Login</h1>
+    <div class="w-100">
+      <label for="email" class="form-label">Correo:</label>
+      <input type="email" class="form-control" id="email" name="email" required>
     </div>
-    <div>
-      <label for="password">contraseña: </label>
-      <input [type]="hidePassword ? 'password' : 'text'" id="password" name="password" required>
-      <button type="button" (click)="togglePasswordVisibility()">
-        <img [src]="passwordIcon" id="svg" />
+    <div class="w-100">
+      <label for="password" class="form-label">Contraseña:</label>
+      <div id="divflex">
+      <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password" name="password" required>
+      <button type="button" class="btn btn-outline-secondary top-0 end-0 " (click)="togglePasswordVisibility()" style="height: 38px;">
+        <img [src]="passwordIcon" id="svg" style="width: 20px; height: 20px;" />
       </button>
+      </div>
     </div>
-    <button type="submit">login</button>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
   </form>
 </div>
