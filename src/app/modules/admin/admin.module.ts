@@ -6,6 +6,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { LoginPage } from "./pages/login/login.page";
 import { HomePage } from "./pages/home/home.page";
+import { PostPage } from "./pages/post/post.page";
+
 
 @NgModule({
     imports: [
@@ -17,7 +19,8 @@ import { HomePage } from "./pages/home/home.page";
     ],
     declarations: [
       LoginPage,
-      HomePage
+      HomePage,
+      PostPage
     ]
   })
   export class AdminPageModule {}
