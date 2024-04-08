@@ -5,6 +5,7 @@ import { HomePage } from "./pages/home/home.page";
 import { HomeRoutingModule } from "./home-routing.module";
 import { SharedModule } from "../../shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
+import { BiografiaPage } from "./pages/Biografia/biografia.page";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from "@angular/common/http";
       HttpClientModule
     ],
     declarations: [
-        HomePage
+        HomePage,
+        BiografiaPage
     ]
   })
   export class HomePageModule {}

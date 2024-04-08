@@ -1,0 +1,87 @@
+.header {
+
+    &__logo {
+        display: flex;
+        justify-content: center;
+        padding-top: 5%;
+
+        & img {
+            @media only screen and (min-width: 1000px) {
+                width: 20vw;
+            }
+            width: 50vw;
+        }
+    }
+
+    &__menu {
+        display: flex;
+        justify-content: center;
+
+    }
+
+}
+
+
+.body {
+    &___search {
+        margin-top: 10%;
+        @media only screen and (min-width: 1000px) {
+            margin-top: 2%;
+            height: 60vh;
+        }
+        height: 45vh;
+        background-image: url('../../../../../assets/images/durango.png');
+        background-position: center;
+        background-size: cover;
+        color: white;
+        &___div {
+            @media only screen and (min-width: 1000px) {
+                padding-top: 10%;
+            }
+            padding-top: 20%;
+            text-align: center;
+            &___title {
+                margin: 0;
+                width: 100%;
+                font-size: 55px;
+                font-family: 'avenir';
+                font-weight: 700;
+            }
+            &___subtitle {
+                margin: 0;
+                font-size: 12px;
+                font-family: 'avenir';
+                font-weight: 400;
+                @media only screen and (min-width: 1000px) {
+                    padding: 0 35%;
+                }
+            }
+
+            &___search {
+                margin-top: 30px;
+                @media only screen and (min-width: 1000px) {
+                    padding: 0 35%;
+                }
+            }
+        }
+        &___overlay {
+            margin-top: -66%;
+            background-color: rgba(190, 15, 15, 0.452);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: static;
+        }
+    }
+
+    &___title {
+        font-size: 30px;
+        font-family: 'avenir';
+        font-weight: 700;
+        color: #706F6F;
+        margin-top: 5%;
+        text-align: center;
+    }
+}
