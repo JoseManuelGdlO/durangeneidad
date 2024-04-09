@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
   margin: 0 !important;
@@ -35,3 +36,4 @@ body {
   src: url("assets/fonts/Avenir-Heavy.ttf") format("truetype");
   font-weight: 800;
 }
+
