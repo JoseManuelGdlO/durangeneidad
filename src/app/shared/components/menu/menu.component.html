@@ -1,0 +1,8 @@
+<div class="menu">
+
+    <div class="menu___item" *ngFor="let item of menuItems" (click)="clickItem(item)">
+        <h5 [ngStyle]="{'color': item.selected ? '#FF354E': '#706F6F'}" class="menu___item___title">{{item.name}}</h5>
+        <div [ngStyle]="{'opacity': item.selected ? '100%' : '0%'}" class="menu___item___line"></div>
+    </div>
+    
+</div>

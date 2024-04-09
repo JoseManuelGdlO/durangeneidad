@@ -1,0 +1,96 @@
+h1 {
+    margin: 0;
+}
+
+.body {
+    &___overlay {
+        @media only screen and (min-width: 1000px) {
+            width: 33%;
+            margin-top: 0;
+            height: 90vh;
+        }
+        width: 100%;
+        margin-top: 5vh;
+        position: absolute;
+        background-color: #FF354E;
+        height: 35vh;
+        z-index: -1;
+    }
+
+    &___row {
+
+        @media only screen and (min-width: 1000px) {
+            padding-top: 15vh;
+        }
+        margin-top: 5vh;
+        padding: 0 10vw;
+        margin-bottom: 5vh;
+
+        &___col1 {
+            float: left;
+
+            @media only screen and (min-width: 1000px) {
+                width: 50%;
+            }
+
+            width: 100%;
+
+            &___img {
+                width: 100%;
+                @media only screen and (min-width: 1000px) {
+                    height: 65vh;
+                }
+                height: 45vh;
+                object-fit: cover;
+            }
+
+            &___box {
+                @media only screen and (min-width: 1000px) {
+                    padding-left: 5vw;
+                }
+                
+                &___name {
+                    margin-top: 4vh;
+                    font-size: 60px;
+                    font-family: 'avenir';
+                    font-weight: 900;
+                    color: #FF354E;
+
+                }
+
+                &___lastname {
+                    font-size: 35px;
+                    font-family: 'avenir';
+                    font-weight: 700;
+                    color: black;
+                    margin-Top: -30px;
+                    letter-spacing: -2px;
+
+                }
+
+                &___text {
+                    margin-top: 4vh;
+                    font-size: 20px;
+                    font-family: 'avenir';
+                    font-weight: 400;
+                    color: black;
+                    line-height: 1.5;
+
+
+                }
+
+            }
+
+
+        }
+
+    }
+
+    &___row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+}

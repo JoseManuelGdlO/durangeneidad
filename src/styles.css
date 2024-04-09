@@ -1,1 +1,39 @@
+
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  margin: 0 !important;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "avenir";
+  src: url("assets/fonts/Avenir-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "avenir";
+  src: url("assets/fonts/Avenir-Light.ttf") format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "avenir";
+  src: url("assets/fonts/Avenir-Book.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "avenir";
+  src: url("assets/fonts/Avenir-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "avenir";
+  src: url("assets/fonts/Avenir-Heavy.ttf") format("truetype");
+  font-weight: 800;
+}
+

@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'admin',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];
