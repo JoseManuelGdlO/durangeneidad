@@ -6,6 +6,7 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { SharedModule } from "../../shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BiografiaPage } from "./pages/Biografia/biografia.page";
+import { ApiService } from "./services/api.service";
 
 @NgModule({
     imports: [
@@ -15,9 +16,12 @@ import { BiografiaPage } from "./pages/Biografia/biografia.page";
       SharedModule,
       HttpClientModule
     ],
+    providers: [
+        ApiService
+    ],
     declarations: [
         HomePage,
-        BiografiaPage
+        BiografiaPage,
     ]
   })
   export class HomePageModule {}

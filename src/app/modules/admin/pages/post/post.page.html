@@ -16,8 +16,13 @@
       <input type="text" class="form-control" id="autor" [(ngModel)]="creador" name="autor" required>
     </div>
     <div class="mb-3">
-      <label for="tags" class="form-label">Tags:</label>
-      <input type="text" class="form-control" id="tag" [(ngModel)]="tags" name="tag">
+      <label for="lugar" class="form-label">Lugar:</label>
+      <input type="text" class="form-control" id="lugar" [(ngModel)]="lugar" name="lugar" required>
+    </div>
+    <div class="mb-3">
+      <label for="tags" class="form-label">Tags: </label>
+      <label for="tags"> separa por comas cada tag (Ej. durango, parral, historia)</label>
+      <input type="text" class="form-control" id="tag" [(ngModel)]="tags" name="tag" required>
     </div>
 
     <button type="submit" class="btn btn-primary w-100">Enviar</button>

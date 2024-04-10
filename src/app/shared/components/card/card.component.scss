@@ -1,0 +1,69 @@
+.content{
+
+    @media only screen and (min-width: 1000px) {
+        padding: 0 25vw;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    padding: 0 10px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    &___box {
+        @media only screen and (min-width: 1000px) {
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+            border: #000;
+            background-color: white;
+        }
+    }
+    &___title {
+        font-size: 25px;
+        font-weight: 900;
+        font-family: 'avenir';
+        color: #000;
+    }
+    &___row{
+        &___col1{
+            float: left;
+            width: 70%;
+            &___by{
+                font-size: 15px;
+                font-weight: 600;
+                font-family: 'avenir';
+                color: #5c5c5c;
+            }
+        }
+        &___col2{
+            float: left;
+            width: 30%;
+            &___date {
+                font-size: 15px;
+                font-weight: 600;
+                font-family: 'avenir';
+                color: #5c5c5c;
+            
+            }
+        }
+    }
+
+    &___body {
+        height: 50vh;
+        overflow-y: clip;
+    }
+
+    &___row::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.cursor {
+    cursor: pointer;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.cursor:active {
+    opacity: 0.5;
+}

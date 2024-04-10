@@ -4,12 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { MenuComponent } from "./components/menu/menu.component";
 import { SearchComponent } from "./components/search/search.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { CardComponent } from "./components/card/card.component";
 
 @NgModule({
     declarations: [
         MenuComponent,
         SearchComponent,
-        HeaderComponent
+        HeaderComponent,
+        CardComponent
     ],
     imports: [
         CommonModule,
@@ -23,7 +25,8 @@ import { HeaderComponent } from "./components/header/header.component";
     exports: [
         MenuComponent,
         SearchComponent,
-        HeaderComponent
+        HeaderComponent,
+        CardComponent
     ]
   })
   export class SharedModule { } 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,7 @@ export class LoginPage {
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
@@ -33,6 +34,7 @@ export class LoginPage {
         // Suponiendo que el token viene directamente en la respuesta
         // O ajusta según la estructura de tu respuesta, por ejemplo, response.data.token
         localStorage.setItem('authToken', response.token);
+        this.router.navigate(['/admin/post']);
         // Aquí puedes redirigir al usuario o hacer otra acción tras el inicio de sesión exitoso
       },
       error: (error) => {

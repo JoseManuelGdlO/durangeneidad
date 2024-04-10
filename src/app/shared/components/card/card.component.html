@@ -1,0 +1,25 @@
+<div class="content">
+    <div class="content___box">
+        <h1 class="content___title">{{item?.titulo}}</h1>
+        <div class="content___row">
+            <div class="content___row___col1">
+                <h4 class="content___row___col1___by">POR <span
+                        style="color: #FF354E; font-weight: 900;">{{item?.creador | uppercase }}</span></h4>
+            </div>
+            <div class="content___row___col2" style="text-align: right;">
+                <h4 class="content___row___col2___date">{{item?.creacion | date }}</h4>
+            </div>
+        </div>
+        <div class="content___body" [innerHTML]="item?.body"></div>
+        <div class="content___row" style="margin-top: 4%;">
+            <div class="content___row___col1">
+                <h4 class="content___row___col1___by">En <span
+                        style="color: #FF354E; font-weight: 900;">{{item?.lugar}}</span></h4>
+            </div>
+            <div class="content___row___col2" style="text-align: right;">
+                <h4 class="content___row___col2___date cursor">Ver mas..</h4>
+            </div>
+        </div>
+
+    </div>
+</div>

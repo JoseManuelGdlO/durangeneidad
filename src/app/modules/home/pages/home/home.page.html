@@ -13,4 +13,7 @@
         </div>
     </div>
     <h1 class="body___title">Contenido</h1>
+    <div *ngFor="let item of articles">
+        <app-card [item]="item"></app-card>
+    </div>
 </body>
