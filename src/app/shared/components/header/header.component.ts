@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,9 @@ export class HeaderComponent {
 
   @Input() selected = '';
 
-  constructor() {}
+  constructor(public router: Router) {}
+
+  selectTag($event: string) {
+    this.router.navigate(['/home/'+$event]);
+  }
 }

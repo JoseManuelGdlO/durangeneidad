@@ -4,6 +4,6 @@
     </div>
 
     <div class="menu">
-        <app-menu [selected]="selected"></app-menu>
+        <app-menu [selected]="selected" (tagSelected)="selectTag($event)"></app-menu>
     </div>
 </header>

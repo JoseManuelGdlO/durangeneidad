@@ -1,0 +1,25 @@
+
+<app-header></app-header>
+
+<body *ngIf="!isLoading" class="content">
+    <h5 class="content___date">
+        {{article.lugar}} / {{article.creacion | date: 'MMM d, y' | titlecase }}
+    </h5>
+    <h1 class="content___title">{{article.titulo}}</h1>
+    
+    <h5 style="color: red;" class="content___date">
+       Por {{article.creador}} 
+    </h5>
+    <div [innerHTML]="article.body"></div>
+</body>
+
+<div class="divSkel" *ngIf="isLoading">
+    <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '50%', margin: 0 }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '30px', 'width': '80%', margin: 0 }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '30%' }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '250px', 'width': '100%', 'margin-bottom': '2px' }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '20px', 'width': '100%', 'margin-bottom': '2px' }" count="20" loadingText="true" appearance="line" />
+</div>
+
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

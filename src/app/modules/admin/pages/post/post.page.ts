@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import Quill from 'quill';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-post-page',
@@ -10,13 +12,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PostPage implements AfterViewInit {
   @ViewChild('quillEditor') quillEditor!: ElementRef;
   private quillInstance!: Quill;
-  creador: string = '';
-  creacion: string = ''; // Esta propiedad se llenará con la fecha actual en addPost()
-  titulo: string = '';
-  lugar: string = '';
-  tags: string = '';
+  creacion: string = '';
 
-  constructor(private http: HttpClient) {}
+  articleForm = new FormGroup({
+    creador: new FormControl('', [Validators.required]),
+    creacion: new FormControl(''),
+    titulo: new FormControl('', [Validators.required]),
+    lugar: new FormControl('', [Validators.required]),
+    tags: new FormControl('', [Validators.required]),
+    imagen: new FormControl<string>(''),
+    descripcion: new FormControl(''),
+  });
+
+  isLoading = false;
+
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   ngAfterViewInit(): void {
     this.quillInstance = new Quill(this.quillEditor.nativeElement, {
@@ -46,19 +56,24 @@ export class PostPage implements AfterViewInit {
   }
 
   addPost(): void {
+
+    this.isLoading = true;
+    
     // Establece 'creacion' a la fecha actual en formato ISO antes de enviar
     this.creacion = new Date().toISOString();
 
-    const completeTags = this.tags.split(',').map((tag) => ({ label: tag.trim() })); // Convierte la cadena de tags en un arreglo de objetos
+    const completeTags = this.articleForm.value.tags?.split(',').map((tag) => ({ label: tag.trim() })); // Convierte la cadena de tags en un arreglo de objetos
 
     const articleBody = this.quillInstance.root.innerHTML; // Obtiene el contenido del editor Quill
     const body = {
       article: {
-        creador: this.creador,
+        creador: this.articleForm.value.creador,
         creacion: this.creacion,
-        titulo: this.titulo,
+        titulo: this.articleForm.value.titulo,
         body: articleBody,
-        lugar:this.lugar
+        lugar: this.articleForm.value.lugar,
+        thumb: this.articleForm.value.imagen,
+        descripcion: this.articleForm.value.descripcion
       },
       tags: completeTags
     };
@@ -69,16 +84,42 @@ export class PostPage implements AfterViewInit {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Authorization', `Bearer ${token}`);
 
-    console.log(body)
     this.http.post('http://3.218.160.237:8000/durangeneidad/add', body, { headers: headers}).subscribe({
       next: (response) => {
-        console.log(response);
+        this.isLoading = false;
+        this.toastr.success('Listo!', 'Guardado con Exito');
+        this.articleForm.reset();
         // Manejo de la respuesta exitosa
       },
       error: (error) => {
+        this.toastr.error('Error!', 'ah ocurrido un error');
         console.error(error);
+        this.isLoading = false;
         // Manejo de errores
       }
     });
   }
+
+  async uploadImage(event: any) {
+    const file = event.target.files[0];
+    const base64: string = await this.convertBase64(file);
+    this.articleForm.patchValue({
+      imagen: base64
+    });
+  };
+
+  convertBase64(file: any): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+  
+      fileReader.onload = () => {
+        resolve(fileReader.result as string);
+      };
+  
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 }

@@ -7,6 +7,10 @@ import { SharedModule } from "../../shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BiografiaPage } from "./pages/Biografia/biografia.page";
 import { ApiService } from "./services/api.service";
+import { DetailPage } from "./pages/detail/detail.page";
+import { MetaService } from "./services/meta.service";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+import { ContactoPage } from "./pages/contacto/contacto.page";
 
 @NgModule({
     imports: [
@@ -14,14 +18,18 @@ import { ApiService } from "./services/api.service";
       FormsModule,
       HomeRoutingModule,
       SharedModule,
-      HttpClientModule
+      HttpClientModule,
+      NgxSkeletonLoaderModule
     ],
     providers: [
-        ApiService
+        ApiService,
+        MetaService
     ],
     declarations: [
         HomePage,
         BiografiaPage,
+        DetailPage,
+        ContactoPage
     ]
   })
   export class HomePageModule {}

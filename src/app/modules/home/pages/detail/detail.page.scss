@@ -1,0 +1,44 @@
+
+h1, h5 {
+    margin: 0;
+}
+.content{
+
+    @media only screen and (min-width: 1000px) {
+        padding: 0 25vw;
+        margin-top: 20% !important;
+        margin-bottom: 2% !important;
+    }
+    padding: 0 10px;
+    overflow-x: auto;
+    margin-bottom: 5% !important;
+    margin-top: 40% !important;
+
+    &___title {
+        font-size: 30px;
+        font-family: 'avenir';
+        font-weight: 700;
+        color: black;
+
+    }
+
+    &___date {
+        font-size: 12px;
+        font-family: 'avenir';
+        font-weight: 400;
+        color: #706F6F;
+    }
+}
+
+.divSkel {
+
+    @media only screen and (min-width: 1000px) {
+        padding: 0 25vw;
+        margin-top: 20% !important;
+        margin-bottom: 2% !important;
+    }
+    padding: 0 10px;
+    margin-bottom: 5% !important;
+    margin-top: 40% !important;
+
+}

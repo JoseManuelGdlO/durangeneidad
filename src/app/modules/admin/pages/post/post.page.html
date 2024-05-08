@@ -3,30 +3,50 @@
 
 <div id="container">
 
-  <form class="p-4" (ngSubmit)="addPost()" #postForm="ngForm">
-    <h1 class="mb-4 text-center">Crear Nota</h1>
+  <form class="p-4" (ngSubmit)="addPost()" [formGroup]="articleForm">
+    <h1 class="mb-4 text-center">Crear Articulo</h1>
     <div class="mb-3">
-      <label for="titulo" class="form-label">Título:</label>
-      <input type="text" class="form-control" id="titulo" [(ngModel)]="titulo" name="titulo" required>
+      <label for="titulo" class="form-label">Título<span style="color: red;">*</span>:</label>
+      <textarea name="story" rows="3" cols="33" class="form-control" id="titulo" name="titulo" formControlName="titulo" required></textarea>
     </div>
-    <label for="nota" class="form-label">Nota:</label>
+    <label for="nota" class="form-label">Articulo<span style="color: red;">*</span>:</label>
     <div id="nota" #quillEditor class="mb-3"></div>
     <div class="mb-3">
-      <label for="autor" class="form-label">Autor:</label>
-      <input type="text" class="form-control" id="autor" [(ngModel)]="creador" name="autor" required>
+      <label for="creador" class="form-label">Autor<span style="color: red;">*</span>:</label>
+      <input type="text" class="form-control" id="creador" name="creador" formControlName="creador" required>
     </div>
     <div class="mb-3">
-      <label for="lugar" class="form-label">Lugar:</label>
-      <input type="text" class="form-control" id="lugar" [(ngModel)]="lugar" name="lugar" required>
+      <label for="lugar" class="form-label">Lugar<span style="color: red;">*</span>:</label>
+      <input type="text" class="form-control" id="lugar" name="lugar" formControlName="lugar" required>
     </div>
     <div class="mb-3">
-      <label for="tags" class="form-label">Tags: </label>
+      <label for="tags" class="form-label">Tags<span style="color: red;">*</span>: </label>
       <label for="tags"> separa por comas cada tag (Ej. durango, parral, historia)</label>
-      <input type="text" class="form-control" id="tag" [(ngModel)]="tags" name="tag" required>
+      <input type="text" class="form-control" id="tags" name="tags" formControlName="tags" required>
+    </div>
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen para mostrar cuando se comparte en redes sociales: </label>
+      <input type="file" accept="image/png, image/jpeg" class="form-control" (change)="uploadImage($event)">
+    </div>
+    
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripcion corta para compartir: </label>
+      <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">Enviar</button>
+    <button [disabled]="articleForm.status !== 'VALID'" type="submit" class="btn btn-primary w-100">Enviar</button>
   </form>
 </div>
+
+<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+
+<dgo-loading [loading]="isLoading"></dgo-loading>
 
 

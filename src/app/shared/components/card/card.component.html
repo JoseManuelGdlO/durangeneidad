@@ -1,4 +1,4 @@
-<div class="content">
+<div *ngIf="!isLoading" class="content">
     <div class="content___box">
         <h1 class="content___title">{{item?.titulo}}</h1>
         <div class="content___row">
@@ -7,7 +7,7 @@
                         style="color: #FF354E; font-weight: 900;">{{item?.creador | uppercase }}</span></h4>
             </div>
             <div class="content___row___col2" style="text-align: right;">
-                <h4 class="content___row___col2___date">{{item?.creacion | date }}</h4>
+                <h4 class="content___row___col2___date"> a {{item?.creacion | date }}</h4>
             </div>
         </div>
         <div class="content___body" [innerHTML]="item?.body"></div>
@@ -17,9 +17,15 @@
                         style="color: #FF354E; font-weight: 900;">{{item?.lugar}}</span></h4>
             </div>
             <div class="content___row___col2" style="text-align: right;">
-                <h4 class="content___row___col2___date cursor">Ver mas..</h4>
+                <h4 class="content___row___col2___date cursor" (click)="seeMore(item)">Ver mas..</h4>
             </div>
         </div>
 
     </div>
+</div>
+
+<div style="padding: 10px 10px 10px 10px" *ngIf="isLoading" class="item">
+    <ngx-skeleton-loader [theme]="{ 'height': '30px', 'width': '80%', margin: 0 }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '70%' }" count="1" loadingText="true" appearance="line" />
+    <ngx-skeleton-loader [theme]="{ 'height': '20px', 'width': '100%', 'margin-bottom': '2px' }" count="10" loadingText="true" appearance="line" />
 </div>

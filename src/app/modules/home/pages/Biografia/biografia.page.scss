@@ -2,6 +2,10 @@ h1 {
     margin: 0;
 }
 
+body {
+    background: transparent !important;
+}
+
 .body {
     &___overlay {
         @media only screen and (min-width: 1000px) {
@@ -22,7 +26,7 @@ h1 {
         @media only screen and (min-width: 1000px) {
             padding-top: 15vh;
         }
-        margin-top: 5vh;
+        margin-top: 20vh;
         padding: 0 10vw;
         margin-bottom: 5vh;
 

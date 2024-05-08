@@ -5,17 +5,23 @@ import { MenuComponent } from "./components/menu/menu.component";
 import { SearchComponent } from "./components/search/search.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { CardComponent } from "./components/card/card.component";
+import { LoadingComponent } from "./components/loading/loading.component";
+import { LottieComponent } from "ngx-lottie";
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
     declarations: [
         MenuComponent,
         SearchComponent,
         HeaderComponent,
-        CardComponent
+        CardComponent,
+        LoadingComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
+        LottieComponent,
+        NgxSkeletonLoaderModule
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -26,7 +32,8 @@ import { CardComponent } from "./components/card/card.component";
         MenuComponent,
         SearchComponent,
         HeaderComponent,
-        CardComponent
+        CardComponent,
+        LoadingComponent
     ]
   })
   export class SharedModule { } 

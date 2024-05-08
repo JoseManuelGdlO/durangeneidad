@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../modules/home/services/api.service';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +11,17 @@ export class CardComponent {
 
   @Input() item:any;
 
-  constructor() {}
+  @Input() set loading( value: boolean) {
+    this.isLoading = value;
+  }
+
+  isLoading = false;
+
+  constructor( private router: Router) {}
+
+  seeMore(item: any) {
+    this.router.navigate(['home/detail', item.id]);
+  }
 
 
 }

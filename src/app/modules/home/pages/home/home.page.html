@@ -5,7 +5,8 @@
         <div class="body___search___div">
             <h1 class="body___search___div___title">Bienvenido</h1>
             <h5 class="body___search___div___subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mollis commodo turpis, sed euismod lorem eleifend et. Nam vestibulum.
+                Revista mensual de historia, cultura, turismo y algo más
+unión de cronistas municipales del estado de durango a.c.
             </h5>
             <div class="body___search___div___search">
                 <app-search></app-search>
@@ -14,6 +15,8 @@
     </div>
     <h1 class="body___title">Contenido</h1>
     <div *ngFor="let item of articles">
-        <app-card [item]="item"></app-card>
+        <app-card [loading]="isLoading" [item]="item"></app-card>
     </div>
 </body>
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

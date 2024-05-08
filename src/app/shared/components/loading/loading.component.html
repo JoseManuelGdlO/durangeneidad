@@ -1,0 +1,11 @@
+<div class="div" *ngIf="isLoading">
+    
+    <ng-lottie
+    class="lottie"
+    width="100%"
+    height="100%"
+    containerClass="moving-box another-class"
+    [options]="options"
+    (animationCreated)="animationCreated($event)"
+    />
+</div>

@@ -30,7 +30,6 @@ export class LoginPage {
 
     this.http.post<any>('http://3.218.160.237:8000/durangeneidad/login', body).subscribe({
       next: (response) => {
-        console.log(response);
         // Suponiendo que el token viene directamente en la respuesta
         // O ajusta según la estructura de tu respuesta, por ejemplo, response.data.token
         localStorage.setItem('authToken', response.token);
