@@ -71,4 +71,23 @@ export class ApiService {
       );
     });
   }
+  
+  sendEmail(body: any) {
+    const token = localStorage.getItem('authToken');
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    headers = headers.set('Authorization', `Bearer ${token}`);
+
+    return new Promise((resolve, reject) => {
+      this.http.post('http://3.218.160.237:8000/durangeneidad/email', { headers }, body).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
 }

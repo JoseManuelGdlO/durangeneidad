@@ -15,10 +15,11 @@
           <textarea id="mensaje" name="mensaje" [(ngModel)]="mensaje" required></textarea>
           
           <button type="submit">Enviar</button>
+          <label style="color: red" *ngIf="error">faltan datos por llenar</label>
         </form>
       </div>
 </body>
 
 
 
-<dgo-loading [loading]="false"></dgo-loading>
+<dgo-loading [loading]="loading"></dgo-loading>

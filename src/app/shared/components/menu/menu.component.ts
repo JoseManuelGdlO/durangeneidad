@@ -9,6 +9,8 @@ import { ApiService } from '../../../modules/home/services/api.service';
 })
 export class MenuComponent implements OnInit {
 
+  isOpen: boolean = false;
+
   @Input('selected') set item(value: string) {
     this.selected = value;
     if(value) {
@@ -21,9 +23,9 @@ export class MenuComponent implements OnInit {
   selected = '';
 
   @Input() menuItems: any[] = [
-    { name: 'INICIO', link: '/home', selected: true },
+    { name: 'INICIO', link: '/inicio', selected: true },
     { name: 'GALERIA', link: '/about', selected: false },
-    { name: 'BIOGRAFIA', link: '/home/biografia', selected: false },
+    { name: 'BIOGRAFIA', link: '/inicio/biografia', selected: false },
     { name: 'SOCIEDAD', link: '/contact', selected: false },
     { name: 'CONTACTO', link: '/contact', selected: false },
   ];
@@ -58,14 +60,14 @@ export class MenuComponent implements OnInit {
         if(index === inMiddle) {
           this.menuItems.push({
             name: 'BIOGRAFIA',
-            link: '/home/biografia',
+            link: '/inicio/biografia',
             isTag: false,
             selected: false,
           });
         } else if (index === 1) {
           this.menuItems.push({
             name: 'INICIO',
-            link: '/home',
+            link: '/inicio',
             isTag: false,
             selected: false,
           });
@@ -73,7 +75,7 @@ export class MenuComponent implements OnInit {
 
         this.menuItems.push({
           name: item.label.toUpperCase(),
-          link: `/home/tag/${item.label}`,
+          link: `/inicio/tag/${item.label}`,
           isTag: true,
           selected: false,
         });
@@ -81,7 +83,7 @@ export class MenuComponent implements OnInit {
         if(index === filtered.length) {
           this.menuItems.push({
             name: 'CONTACTO',
-            link: '/home/contact',
+            link: '/inicio/contact',
             isTag: false,
             selected: false,
           });
@@ -118,4 +120,9 @@ export class MenuComponent implements OnInit {
 
     this.router.navigate([item.link]);
   }
+
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
+  }
+
 }

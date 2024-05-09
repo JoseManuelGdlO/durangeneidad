@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { MetaService } from '../../services/meta.service';
 
@@ -17,7 +17,8 @@ export class DetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public apiService: ApiService,
-    private metaService: MetaService
+    private metaService: MetaService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -36,7 +37,7 @@ export class DetailPage implements OnInit {
           title: this.article.titulo,
           type: 'website',
           imageSrc: this.article.thumb,
-          url: '<http://durangeneidad.com>',
+          url: this.router.url,
           description: this.article.descripcion,
           cardType: 'summary_large_image',
         });

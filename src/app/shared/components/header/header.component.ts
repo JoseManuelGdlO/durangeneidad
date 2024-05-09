@@ -13,6 +13,6 @@ export class HeaderComponent {
   constructor(public router: Router) {}
 
   selectTag($event: string) {
-    this.router.navigate(['/home/'+$event]);
+    this.router.navigate(['/inicio/'+$event]);
   }
 }

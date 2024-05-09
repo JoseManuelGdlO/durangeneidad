@@ -15,7 +15,7 @@ const routes: Routes = [
       component: BiografiaPage
     },
     {
-      path: 'detail/:id',
+      path: 'noticia/:id/:title',
       component: DetailPage
     },
     {

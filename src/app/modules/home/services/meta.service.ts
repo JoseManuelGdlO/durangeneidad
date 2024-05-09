@@ -11,17 +11,17 @@ export class MetaService {
 
     updateMetaTags(metaTags: MetaTags) {
         const { title, type, imageSrc, url, description, cardType } = metaTags;
-     
         this.setTitle(title);
         this.setType(type);
         this.setImage(imageSrc);
-        this.setUrl(url);
+        this.setURL(url);
         this.setDescription(description);
         this.setCardType(cardType);
     }
 
     private setTitle(title: string) {
         this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ property: 'twitter:title', content: title });
     }
      
     private setType(type: string) {
@@ -30,18 +30,23 @@ export class MetaService {
      
     private setImage(imageSrc: string) {
         this.meta.updateTag({ property: 'og:image', content: imageSrc });
+        this.meta.updateTag({ property: 'twitter:image', content: imageSrc });
     }
-     
-    private setUrl(url: string) {
-        this.meta.updateTag({ property: 'og:url', content: url });
-    }
+    
      
     private setDescription(description: string) {
         this.meta.updateTag({ property: 'og:description', content: description });
+        this.meta.updateTag({ property: 'twitter:description', content: description });
     }
      
     private setCardType(cardType: string) {
         this.meta.updateTag({ name: 'twitter:card', content: cardType });
+    }
+
+    
+    private setURL(url: string) {
+        this.meta.updateTag({ name: 'twitter:url', content: `http://durangeneidad.com${url}` });
+        this.meta.updateTag({ name: 'og:url', content: `http://durangeneidad.com${url}` });
     }
 
 

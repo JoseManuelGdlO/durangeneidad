@@ -6,3 +6,15 @@
     </div>
     
 </div>
+
+<div class="menuHBurger">
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="menu-list" [class.open]="isOpen">
+      <li class="listyle" *ngFor="let item of menuItems"><a (click)="clickItem(item); toggleMenu()">{{item.name}}</a></li>
+      <li style="margin: -14px 9px;"><a style="font-size: 9px; font-style: italic;">version 0.0.1</a></li>
+    </ul>
+  </div>
