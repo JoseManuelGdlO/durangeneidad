@@ -84,7 +84,7 @@ export class PostPage implements AfterViewInit {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     headers = headers.set('Authorization', `Bearer ${token}`);
 
-    this.http.post('http://3.218.160.237:8000/durangeneidad/add', body, { headers: headers}).subscribe({
+    this.http.post('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/add', body, { headers: headers}).subscribe({
       next: (response) => {
         this.isLoading = false;
         this.toastr.success('Listo!', 'Guardado con Exito');

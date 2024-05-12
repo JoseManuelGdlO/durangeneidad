@@ -20,7 +20,7 @@ export class CardComponent {
   constructor( private router: Router) {}
 
   seeMore(item: any) {
-    this.router.navigate(['inicio/noticia', item.id, item.titulo.split(' ').join('-')]);
+    this.router.navigate(['inicio/noticia', item.id, item.titulo.split(' ').join('-'), Math.floor(Math.random()*90000) + 10000]);
   }
 
 

@@ -19,7 +19,7 @@ export class MetaService {
         this.setCardType(cardType);
     }
 
-    private setTitle(title: string) {
+    public setTitle(title: string) {
         this.meta.updateTag({ property: 'og:title', content: title });
         this.meta.updateTag({ property: 'twitter:title', content: title });
     }
@@ -44,7 +44,7 @@ export class MetaService {
     }
 
     
-    private setURL(url: string) {
+    public setURL(url: string) {
         this.meta.updateTag({ name: 'twitter:url', content: `http://durangeneidad.com${url}` });
         this.meta.updateTag({ name: 'og:url', content: `http://durangeneidad.com${url}` });
     }

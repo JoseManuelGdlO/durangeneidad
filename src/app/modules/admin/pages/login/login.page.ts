@@ -28,7 +28,7 @@ export class LoginPage {
       password: this.password
     };
 
-    this.http.post<any>('http://3.218.160.237:8000/durangeneidad/login', body).subscribe({
+    this.http.post<any>('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/login', body).subscribe({
       next: (response) => {
         // Suponiendo que el token viene directamente en la respuesta
         // O ajusta según la estructura de tu respuesta, por ejemplo, response.data.token

@@ -34,7 +34,7 @@ export class ContactoPage {
       mensaje: this.mensaje
     };
 
-    this.http.post<any>('http://3.218.160.237:8000/durangeneidad/email', formData)
+    this.http.post<any>('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/email', formData)
       .subscribe(
         response => {
           console.log('Correo enviado con éxito', response);

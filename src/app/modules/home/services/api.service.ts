@@ -17,7 +17,7 @@ export class ApiService {
 
     return new Promise((resolve, reject) => {
       this.http
-        .get('http://3.218.160.237:8000/durangeneidad/getTags', { headers })
+        .get('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/getTags', { headers })
         .subscribe(
           (response) => {
             resolve(response);
@@ -39,7 +39,7 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       this.http
         .get(
-          'http://3.218.160.237:8000/durangeneidad/getArts?filter=' + filter,
+          'https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/getArts?filter=' + filter,
           { headers }
         )
         .subscribe(
@@ -61,7 +61,7 @@ export class ApiService {
     headers = headers.set('Authorization', `Bearer ${token}`);
 
     return new Promise((resolve, reject) => {
-      this.http.get('http://3.218.160.237:8000/durangeneidad/getDetail?id=' + id, { headers }).subscribe(
+      this.http.get('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/getDetail?code=' + id, { headers }).subscribe(
         (response) => {
           resolve(response);
         },
@@ -80,7 +80,7 @@ export class ApiService {
     headers = headers.set('Authorization', `Bearer ${token}`);
 
     return new Promise((resolve, reject) => {
-      this.http.post('http://3.218.160.237:8000/durangeneidad/email', { headers }, body).subscribe(
+      this.http.post('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/email', { headers }, body).subscribe(
         (response) => {
           resolve(response);
         },

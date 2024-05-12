@@ -23,8 +23,10 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.metaService.setURL(this.router.url);
     this.route.params.subscribe((params: any) => {
       this.getData(params.id);
+      this.metaService.setTitle(params.title);
     });
   }
 
