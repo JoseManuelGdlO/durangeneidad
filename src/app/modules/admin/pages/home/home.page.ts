@@ -6,5 +6,10 @@ import { Component } from "@angular/core";
     styleUrls: ['home.page.scss'],
   })
   export class HomePage {
-    constructor() {}
+    menuItems: { label: string, link: string }[] = [
+      { label: 'Articulos', link: 'articles' },
+      { label: 'Biografía', link: 'biography' },
+      { label: 'Libreria', link: 'library' },
+      { label: 'Configuraciones', link: 'settings' }
+    ];
   }

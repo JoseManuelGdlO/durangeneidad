@@ -1,15 +1,17 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import Quill from 'quill';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../home/services/api.service';
 
 @Component({
   selector: 'app-post-page',
   templateUrl: './post.page.html',
   styleUrls: ['./post.page.scss'],
 })
-export class PostPage implements AfterViewInit {
+export class PostPage implements AfterViewInit, OnInit {
   @ViewChild('quillEditor') quillEditor!: ElementRef;
   private quillInstance!: Quill;
   creacion: string = '';
@@ -24,9 +26,20 @@ export class PostPage implements AfterViewInit {
     descripcion: new FormControl(''),
   });
 
+  id: string = '';
+
   isLoading = false;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService, public route: ActivatedRoute, public apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      if(params.id){
+        this.id = params.id;
+        this.getDetails();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.quillInstance = new Quill(this.quillEditor.nativeElement, {
@@ -97,6 +110,28 @@ export class PostPage implements AfterViewInit {
         this.isLoading = false;
         // Manejo de errores
       }
+    });
+  }
+
+  async getDetails() {
+    this.isLoading = true;
+    this.apiService
+    .getDetail(Number(this.id))
+    .then((response: any) => {
+      this.articleForm.patchValue({
+        creador: response.data[0].creador,
+        titulo: response.data[0].titulo,
+        lugar: response.data[0].lugar,
+        tags: response.tags.map((tag: any) => tag.label).join(', '),
+        imagen: response.data[0].thumb,
+        descripcion: response.data[0].descripcion
+      });
+
+      this.quillInstance.root.innerHTML = response.data[0].body;
+    }).catch((error: any) => {
+      console.log(error);
+    }).finally(() => {
+      this.isLoading = false;
     });
   }
 

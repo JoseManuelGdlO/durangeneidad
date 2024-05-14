@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h1>Articulos</h1>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtro" (keyup)="aplicarFiltro()">
+    </div>
+    <div class="col-md-6 text-md-end mt-2 mt-md-0">
+      <button class="btn btn-primary" routerLink="/admin/home/post">Crear Nuevo Artículo</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="list-group">
+        <div class="list-group-item list-group-item-secondary">
+          <div class="row">
+            <div class="col-md-3"><strong>Título</strong></div>
+            <div class="col-md-3"><strong>Creador</strong></div>
+            <div class="col-md-3"><strong>Descripción</strong></div>
+            <div class="col-md-2"><strong>Fecha de Creación</strong></div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div *ngFor="let articulo of articulosFiltrados" class="list-group-item">
+          <div class="row">
+            <div class="col-md-3">
+              <p class="list-group-item-title">{{ articulo.titulo }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="list-group-item-text">{{ articulo.creador }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="list-group-item-description">{{ articulo.descripcion }}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="list-group-item-text">{{ articulo.creacion | date:'mediumDate' }}</p>
+            </div>
+            <div class="col-md-1">
+              <button [routerLink]="['/admin/home/post', articulo.id]" class="btn btn-primary btn-sm">Editar</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="articulosFiltrados.length === 0" class="list-group-item">
+          No se encontraron artículos.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

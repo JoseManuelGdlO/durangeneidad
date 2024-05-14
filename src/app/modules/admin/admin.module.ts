@@ -7,6 +7,13 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { LoginPage } from "./pages/login/login.page";
 import { HomePage } from "./pages/home/home.page";
 import { PostPage } from "./pages/post/post.page";
+import { ArticlesPage } from "./pages/articles/articles.page";
+import { SettingsPage } from "./pages/settings/settings.page";
+import { BiographyPage } from "./pages/biography/biography.page";
+import { DataService } from "./services/data.service";
+import { ApiService } from "../home/services/api.service";
+import { LibraryPage } from "./pages/library/library.page";
+import { AddBookPage } from "./pages/add-book/add-book.page";
 
 
 @NgModule({
@@ -21,7 +28,16 @@ import { PostPage } from "./pages/post/post.page";
     declarations: [
       LoginPage,
       HomePage,
-      PostPage
+      PostPage,
+      ArticlesPage,
+      SettingsPage,
+      BiographyPage,
+      LibraryPage,
+      AddBookPage
+    ],
+    providers: [
+      DataService,
+      ApiService
     ]
   })
   export class AdminPageModule {}

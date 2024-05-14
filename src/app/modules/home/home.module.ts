@@ -11,6 +11,7 @@ import { DetailPage } from "./pages/detail/detail.page";
 import { MetaService } from "./services/meta.service";
 import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import { ContactoPage } from "./pages/contacto/contacto.page";
+import { DataService } from "../admin/services/data.service";
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { ContactoPage } from "./pages/contacto/contacto.page";
     ],
     providers: [
         ApiService,
-        MetaService
+        MetaService,
+        DataService
     ],
     declarations: [
         HomePage,
