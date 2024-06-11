@@ -1,0 +1,73 @@
+<div class="container mt-4">
+    <h1>Avisos</h1>
+    <div class="card mt-4 mb-4">
+        <div class="card-header">
+            <h5>Editar Aviso</h5>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="updateConfiguration()" #form="ngForm">
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Descricpion</label>
+                    <div id="nota" #quillEditor class="mb-3"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="autor" class="form-label">Autor</label>
+                    <input type="text" class="form-control" id="autor" name="autor"
+                        [(ngModel)]="advice.autor" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha"
+                        [(ngModel)]="advice.date" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button (click)="advice = { id: 0, descripcion: '', autor: '', date: '' }; quillInstance.setText('');" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtro" (keyup)="aplicarFiltro()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-secondary">
+                    <div class="row">
+                        <div class="col-md-1"><strong>Id</strong></div>
+                        <div class="col-md-6"><strong>Descripcion</strong></div>
+                        <div class="col-md-2"><strong>Autor</strong></div>
+                        <div class="col-md-2"><strong>Fecha</strong></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div *ngFor="let adv of advicesFiltered" class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <p class="list-group-item-title">{{ adv.id }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 style="margin: 0; font-size: 12px;" class="list-group-item-description" [innerHTML]="adv.descripcion"></h3>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="list-group-item-text">{{ adv.autor }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="list-group-item-text">{{ adv.fecha | date }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <button (click)="advice = adv; quillInstance.root.innerHTML = adv.descripcion; advice.date = advice.date.split('T')[0]" class="btn btn-primary btn-sm">Editar</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="advicesFiltered.length === 0" class="list-group-item">
+                    No se encontraron avisos.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dgo-loading [loading]="isLoading"></dgo-loading>

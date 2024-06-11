@@ -1,0 +1,50 @@
+<div class="profile">
+    <img class="profile-picture" [src]="profilePic" alt="Profile Picture">
+    <h2 class="name">{{ userName }}</h2>
+  </div>
+  <div class="social-buttons">
+    <a [href]="FB" target="_blank" class="social-button facebook">
+        <ng-lottie
+        class="lottie"
+        width="100%"
+        height="100%"
+        containerClass="moving-box another-class"
+        [options]="{
+            path: '/assets/images/lottie/facebook.json',
+          }"
+        />
+    </a>
+    <a [href]="TK" target="_blank" class="social-button tiktok">
+        <ng-lottie
+        class="lottie"
+        width="100%"
+        height="100%"
+        containerClass="moving-box another-class"
+        [options]="{
+            path: '/assets/images/lottie/tiktok.json',
+          }"
+        />
+    </a>
+    <a [href]="TW" target="_blank" class="social-button twitter">
+        <ng-lottie
+        class="lottie"
+        width="100%"
+        height="100%"
+        containerClass="moving-box another-class"
+        [options]="{
+            path: '/assets/images/lottie/twitter.json',
+          }"
+        />
+    </a>
+    <a [href]="YT" target="_blank" class="social-button youtube">
+        <ng-lottie
+        class="lottie"
+        width="100%"
+        height="100%"
+        containerClass="moving-box another-class"
+        [options]="{
+            path: '/assets/images/lottie/youtube.json',
+          }"
+        />
+    </a>
+  </div>

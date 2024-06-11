@@ -1,16 +1,41 @@
-
-<app-header></app-header>
 <body>
-    <div class="body___search">
+    <div class="body___search" [ngStyle]="{'background-image': backgroundImg }">
         <div class="body___search___div">
-            <h1 class="body___search___div___title">Bienvenido</h1>
+            <h1 class="body___search___div___title">{{title}}</h1>
             <h5 class="body___search___div___subtitle">
-                Revista mensual de historia, cultura, turismo y algo más
-unión de cronistas municipales del estado de durango a.c.
+                {{subTitle}}
             </h5>
-            <div class="body___search___div___search">
+            <!-- <div class="body___search___div___search">
                 <app-search></app-search>
-            </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="text-white divTags">
+        <app-perfil></app-perfil>
+        <h4 style="color: #FF354E; margin-top: 30px;">Etiquetas</h4>
+        <div class="card-body">
+            <nav class="nav flex-column">
+                <ul class="nav flex-column">
+                    <li class="nav-item" *ngFor="let tag of tags">
+                        <a class="nav-link" [routerLink]="'/inicio/'+tag.label">
+                            <span style="padding-top: 3px; color: #FF354E">{{ tag.label | titlecase }}</span>
+                            <span style="color: #706F6F; margin-left: 5px;"><strong>({{ tag.count }})</strong></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="text-white divNews">
+        <div routerLink="/inicio/contact" style="cursor: pointer;">
+            <h4 style="color: #FF354E; margin-top: 30px; padding-left: 15px;">Contacto</h4>
+            <p style="color: black; padding-left: 20px;">{{contactMessage}}</p>
+        </div>
+        <h4 style="color: #FF354E; margin-top: 30px; padding-left: 15px;">Avisos</h4>
+        <div class="divNews___cardNews">
+            <div *ngFor="let item of news">    
+                <app-announcement [date]="item.fecha" [message]="item.descripcion" [autor]="item.autor"></app-announcement>
+            </div>  
         </div>
     </div>
     <h1 class="body___title">Contenido</h1>

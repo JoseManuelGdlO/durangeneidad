@@ -1,36 +1,40 @@
 
 <div class="container mt-4">
-    <h2>Agregar Nuevo Libro</h2>
-    <form (ngSubmit)="agregarLibro()" #libroForm="ngForm">
+    <h2>{{id ? 'Editar' : 'Agregar' }}libro</h2>
+    <form [formGroup]="nuevoLibro" (ngSubmit)="agregarLibro()" #libroForm="ngForm">
       <div class="mb-3">
         <label for="titulo" class="form-label">Título del Libro</label>
-        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="nuevoLibro.titulo" required>
+        <input type="text" class="form-control" id="titulo" name="titulo" formControlName="titulo" required>
       </div>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripcion</label>
-        <textarea type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="nuevoLibro.descripcion" required></textarea>
+        <textarea type="text" class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required></textarea>
       </div>
       <div class="mb-3">
         <label for="fecha" class="form-label">Fecha de Publicación</label>
-        <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="nuevoLibro.fecha" required>
+        <input type="date" class="form-control" id="fecha" name="fecha" formControlName="fecha" required>
       </div>
       <div class="mb-3">
         <label for="autor" class="form-label">Autor</label>
-        <input type="text" class="form-control" id="autor" name="autor" [(ngModel)]="nuevoLibro.autor" required>
+        <input type="text" class="form-control" id="autor" name="autor" formControlName="autor" required>
       </div>
       <div class="mb-3">
         <label for="tags" class="form-label">Tags</label>
-        <input type="text" class="form-control" id="tags" name="tags" [(ngModel)]="nuevoLibro.tags" required>
+        <input type="text" class="form-control" id="tags" name="tags" formControlName="tags" required>
         <small id="tagsHelp" class="form-text text-muted">Separados por comas (,)</small>
       </div>
-      <div class="mb-3">
+      <div *ngIf="!id" class="mb-3">
         <label for="image" class="form-label">Imagen de portada</label>
         <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event, 'image')"  accept="image/png, image/jpeg" required>
       </div>
-      <div class="mb-3">
+      <div *ngIf="!id" class="mb-3">
         <label for="pdf" class="form-label">PDF</label>
         <input type="file" class="form-control" id="pdf" name="pdf" (change)="onFileSelected($event, 'file')" accept=".pdf" required>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!libroForm.valid">Agregar Libro</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!libroForm.valid">{{id ? 'Editar' : 'Agregar' }}</button>
     </form>
   </div>
+
+  
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

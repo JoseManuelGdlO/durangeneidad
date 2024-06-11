@@ -8,6 +8,8 @@ import { CardComponent } from "./components/card/card.component";
 import { LoadingComponent } from "./components/loading/loading.component";
 import { LottieComponent } from "ngx-lottie";
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { PerfilComponent } from "./components/perfil/perfil.component";
+import { NewsComponent } from "./components/news/news.component";
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
         SearchComponent,
         HeaderComponent,
         CardComponent,
-        LoadingComponent
+        LoadingComponent,
+        PerfilComponent,
+        NewsComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +37,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
         SearchComponent,
         HeaderComponent,
         CardComponent,
-        LoadingComponent
+        LoadingComponent,
+        PerfilComponent,
+        NewsComponent
     ]
   })
   export class SharedModule { } 

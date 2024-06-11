@@ -14,9 +14,10 @@
         <div class="list-group-item list-group-item-secondary">
           <div class="row">
             <div class="col-md-3"><strong>Título</strong></div>
-            <div class="col-md-3"><strong>Creador</strong></div>
+            <div class="col-md-2"><strong>Creador</strong></div>
             <div class="col-md-3"><strong>Descripción</strong></div>
             <div class="col-md-2"><strong>Fecha de Creación</strong></div>
+            <div class="col-md-1"></div>
             <div class="col-md-1"></div>
           </div>
         </div>
@@ -25,7 +26,7 @@
             <div class="col-md-3">
               <p class="list-group-item-title">{{ articulo.titulo }}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <p class="list-group-item-text">{{ articulo.creador }}</p>
             </div>
             <div class="col-md-3">
@@ -37,6 +38,9 @@
             <div class="col-md-1">
               <button [routerLink]="['/admin/home/post', articulo.id]" class="btn btn-primary btn-sm">Editar</button>
             </div>
+            <div class="col-md-1">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="id = articulo.id; openModal()"  class="btn btn-primary btn-sm">Eliminar</button>
+            </div>
           </div>
         </div>
         <div *ngIf="articulosFiltrados.length === 0" class="list-group-item">
@@ -46,5 +50,24 @@
     </div>
   </div>
 </div>
+
+<div  style="display: none;" #exampleModal class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Advertencia</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        Estas Seguro que deseas eliminar el articulo?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">No Eliminar</button>
+        <button type="button" class="btn btn-primary" (click)="closeModal(); removeArticle()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <dgo-loading [loading]="isLoading"></dgo-loading>

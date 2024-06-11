@@ -1,0 +1,65 @@
+<div class="container mt-4">
+    <h1>Categorias</h1>
+    <div class="card mt-4 mb-4">
+        <div class="card-header">
+            <h5>Editar Categoria</h5>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="updateCategorie()" #form="ngForm">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="categorie.nombre"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="categorie.descripcion" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button (click)="categorie = { id: 0, nombre: '', descripcion: '' }" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtro" (keyup)="aplicarFiltro()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-secondary">
+                    <div class="row">
+                        <div class="col-md-1"><strong>Id</strong></div>
+                        <div class="col-md-5"><strong>nombre</strong></div>
+                        <div class="col-md-5"><strong>descripcion</strong></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div *ngFor="let category of categoriesFiltered" class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <p class="list-group-item-title">{{ category.id }}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="list-group-item-description">{{ category.nombre }}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="list-group-item-text">{{ category.descripcion }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <button (click)="categorie = category" class="btn btn-primary btn-sm">Editar</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="categoriesFiltered.length === 0" class="list-group-item">
+                    No se encontraron categorias.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dgo-loading [loading]="isLoading"></dgo-loading>

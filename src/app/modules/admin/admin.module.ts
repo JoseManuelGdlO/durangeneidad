@@ -14,6 +14,8 @@ import { DataService } from "./services/data.service";
 import { ApiService } from "../home/services/api.service";
 import { LibraryPage } from "./pages/library/library.page";
 import { AddBookPage } from "./pages/add-book/add-book.page";
+import { AdvicesPage } from "./pages/advices/advices.page";
+import { CategoriesPage } from "./pages/categories/categories.page";
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { AddBookPage } from "./pages/add-book/add-book.page";
       SettingsPage,
       BiographyPage,
       LibraryPage,
-      AddBookPage
+      AddBookPage,
+      CategoriesPage,
+      AdvicesPage
     ],
     providers: [
       DataService,

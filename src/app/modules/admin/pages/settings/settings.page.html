@@ -1,1 +1,81 @@
-<h1>Configutraciones</h1>
+<div class="container mt-4">
+    <h1>Configuraciones</h1>
+    <div class="card mt-4 mb-4">
+        <div class="card-header">
+            <h5>Editar Configuración</h5>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="updateConfiguration()" #form="ngForm">
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" [disabled]="configuration.id !== 0" [(ngModel)]="configuration.codigo"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor</label>
+                    <input [type]="configuration.tipo === 'imagen' ? 'file' : 'text'" class="form-control" id="valor" name="valor"
+                        [(ngModel)]="configuration.valor"  (change)="onFileSelected($event)"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="configuration.descripcion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo" class="form-label">tipo</label>
+                    <select class="form-control" id="tipo" name="tipo" [(ngModel)]="configuration.tipo" required>
+                        <option value="texto" selected>texto</option>
+                        <option value="imagen">imagen</option>
+                      </select>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button (click)="configuration = { id: 0, codigo: '', valor: '', descripcion: '', tipo: 'texto' }" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="filtro" (keyup)="aplicarFiltro()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-secondary">
+                    <div class="row">
+                        <div class="col-md-1"><strong>Tipo</strong></div>
+                        <div class="col-md-2"><strong>Codigo</strong></div>
+                        <div class="col-md-4"><strong>Descripcioon</strong></div>
+                        <div class="col-md-4"><strong>Valor</strong></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+                <div *ngFor="let config of configurationsFiltered" class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <p class="list-group-item-description">{{ config.type }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="list-group-item-description">{{ config.codigo }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="list-group-item-description">{{ config.descripcion }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="list-group-item-text">{{ config.valor }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <button (click)="configuration = config" class="btn btn-primary btn-sm">Editar</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="configurationsFiltered.length === 0" class="list-group-item">
+                    No se encontraron configuraciones.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dgo-loading [loading]="isLoading"></dgo-loading>

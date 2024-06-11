@@ -1,0 +1,17 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-4" [ngClass]="{'col-lg-4': isWeb, 'col-6': isMobile}" *ngFor="let book of items">
+        <div (click)="sendDetail(book.id)" class="card mb-3">
+            <img [src]="'https://extra.durangueneidad.com/'+book.imagen_portada" class="card-img-top img-fluid imgcard" alt="Book Image">
+            <div class="card-body">
+              <h5 class="card-title clamp-text" style="color: #FF354E;">{{ book.titulo }}</h5>
+              <p class="card-text clamp-text" style="color: #706F6F;">{{ book.descripcion }}</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<dgo-loading [loading]="isLoading"></dgo-loading>

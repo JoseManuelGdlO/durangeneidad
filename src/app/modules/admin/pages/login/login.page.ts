@@ -11,6 +11,7 @@ export class LoginPage {
   hidePassword = true;
   email: string = '';
   password: string = '';
+  isLoading = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -23,6 +24,7 @@ export class LoginPage {
   }
 
   login(): void {
+    this.isLoading = true;
     const body = {
       email: this.email,
       password: this.password
@@ -32,12 +34,14 @@ export class LoginPage {
       next: (response) => {
         // Suponiendo que el token viene directamente en la respuesta
         // O ajusta según la estructura de tu respuesta, por ejemplo, response.data.token
+        this.isLoading = false;
         localStorage.setItem('authToken', response.token);
-        this.router.navigate(['/admin/post']);
+        this.router.navigate(['/admin/home/articles']);
         // Aquí puedes redirigir al usuario o hacer otra acción tras el inicio de sesión exitoso
       },
       error: (error) => {
         console.error(error);
+        this.isLoading = false;
         // Manejo de errores, como mostrar un mensaje de error al usuario
       }
     });

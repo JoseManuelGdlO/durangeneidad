@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
 import { MetaService } from '../../services/meta.service';
 
 @Component({
@@ -13,6 +12,7 @@ export class DetailPage implements OnInit {
   article: any;
 
   isLoading = false;
+  tags = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +35,7 @@ export class DetailPage implements OnInit {
       .getDetail(id)
       .then((response: any) => {
         this.article = response.data[0];
+        this.tags = response.tags.map((x: any) => x.label).join(', ');
         this.metaService.updateMetaTags({
           title: this.article.titulo,
           type: 'website',

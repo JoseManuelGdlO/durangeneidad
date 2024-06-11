@@ -24,16 +24,16 @@ export class MenuComponent implements OnInit {
 
   @Input() menuItems: any[] = [
     { name: 'INICIO', link: '/inicio', selected: true },
-    { name: 'GALERIA', link: '/about', selected: false },
     { name: 'BIOGRAFIA', link: '/inicio/biografia', selected: false },
-    { name: 'SOCIEDAD', link: '/contact', selected: false },
-    { name: 'CONTACTO', link: '/contact', selected: false },
+    { name: 'LIBROS', link: '/inicio/library', selected: false },
+    { name: 'CONTACTO', link: '/inicio/contact', selected: false },
   ];
 
   constructor(private router: Router, private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.getTags()
+    this.getMenu()
+    // this.getTags()
     if(this.selected) {
       this.menuItems.forEach((i) => (i.selected = i.name.toLowerCase() === this.selected));
     }
@@ -43,6 +43,50 @@ export class MenuComponent implements OnInit {
       sessionStorage.removeItem('MENU');
     });
   }
+
+  async getMenu() {
+    try {
+      const response: any = await this.apiService.getMenu();
+      this.menuItems = []; 
+      this.menuItems.push({
+        name: 'INICIO',
+        catid: 0,
+        link: '/inicio',
+        isTag: false,
+        selected: true,
+      });
+      let index = 0
+      for(const item of response.data) {
+        this.menuItems.push({
+          name: item.nombre.toUpperCase(),
+          catid: item.id,
+          link: `/inicio/${item.id}/CATEGORY`,
+          isTag: true,
+          selected: false,
+        });
+        if(index === response.data.length - 1) {
+          this.menuItems.push({
+            name: 'LIBROS',
+            link: '/inicio/library',
+            isTag: false,
+            selected: false,
+          });
+        }
+        if(index === response.data.length - 1) {
+          this.menuItems.push({
+            name: 'BIOGRAFIA',
+            link: '/inicio/biografia',
+            isTag: false,
+            selected: false,
+          });
+        }
+        index++
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   async getTags() {
     try {
@@ -113,11 +157,6 @@ export class MenuComponent implements OnInit {
     this.menuItems.forEach((i) => (i.selected = false));
     item.selected = true;
     sessionStorage.setItem('MENU', JSON.stringify(this.menuItems));
-    if(item.isTag) {
-      this.tagSelected.emit(item.name);
-      return;
-    }
-
     this.router.navigate([item.link]);
   }
 

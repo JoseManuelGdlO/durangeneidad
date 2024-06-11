@@ -10,6 +10,8 @@ import { Component } from "@angular/core";
       { label: 'Articulos', link: 'articles' },
       { label: 'Biografía', link: 'biography' },
       { label: 'Libreria', link: 'library' },
+      { label: 'Avisos', link: 'advices' },
+      { label: 'Categorias', link: 'categories' },
       { label: 'Configuraciones', link: 'settings' }
     ];
   }

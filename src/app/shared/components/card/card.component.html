@@ -20,11 +20,11 @@
                 <h4 class="content___row___col2___date cursor" (click)="seeMore(item)">Ver mas..</h4>
             </div>
         </div>
-
+        <hr class="content___box___hr">
     </div>
 </div>
 
-<div style="padding: 10px 10px 10px 10px" *ngIf="isLoading" class="item">
+<div style="padding: 10px 270px 10px 270px" *ngIf="isLoading" class="item">
     <ngx-skeleton-loader [theme]="{ 'height': '30px', 'width': '80%', margin: 0 }" count="1" loadingText="true" appearance="line" />
     <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '70%' }" count="1" loadingText="true" appearance="line" />
     <ngx-skeleton-loader [theme]="{ 'height': '20px', 'width': '100%', 'margin-bottom': '2px' }" count="10" loadingText="true" appearance="line" />

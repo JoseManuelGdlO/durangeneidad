@@ -8,7 +8,7 @@
       <div class="col-md-6">
         <label for="imagen" class="form-label">Imagen</label>
         <input type="file" class="form-control" id="imagen" (change)="onFileSelected($event)" accept="image/*">
-        <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" class="img-fluid mt-3" alt="Imagen seleccionada">
+        <img *ngIf="imgPreview" [src]="'https://extra.durangueneidad.com/'+imgPreview" class="img-fluid mt-3" alt="Imagen seleccionada">
       </div>
     </div>
     <div class="row mt-3">
@@ -17,3 +17,7 @@
       </div>
     </div>
   </div>
+  
+  
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

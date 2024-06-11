@@ -25,12 +25,19 @@
               "src/assets",
               "src/robots.txt",
               "src/sitemap.xml",
-              "src/.htaccess"
+              "src/.htaccess",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
               "node_modules/quill/dist/quill.snow.css",
-              "node_modules/ngx-toastr/toastr.css" 
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-sharebuttons/themes/modern.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss"
             ],
             "scripts": []
           },
@@ -86,11 +93,21 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/.htaccess",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css" 
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-sharebuttons/themes/modern.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss"
             ],
             "scripts": []
           }

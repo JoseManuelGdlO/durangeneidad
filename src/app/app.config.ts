@@ -9,6 +9,7 @@ import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
 import { provideLottieOptions } from 'ngx-lottie';
 import { provideToastr } from 'ngx-toastr';
+import { provideHttpClient } from '@angular/common/http';
 registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideLottieOptions({
       player: () => player,
     }),
+    provideHttpClient(),
     provideToastr(),
     provideAnimations()
   ],

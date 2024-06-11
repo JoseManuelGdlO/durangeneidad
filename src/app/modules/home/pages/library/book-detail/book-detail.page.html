@@ -1,0 +1,44 @@
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img [src]="'https://extra.durangueneidad.com/'+book.imagen_portada" class="img-fluid mb-3"
+          alt="Portada del libro">
+      </div>
+      <div class="col-8">
+        <h2>{{ book.titulo }}</h2>
+        <p class="text-muted">{{ book.autor }}</p>
+        <p>{{ book.descripcion }}</p>
+        <p><strong>Fecha de Publicación:</strong> {{ book.fecha_publicacion | date }}</p>
+        <share-buttons  theme="material-dark"
+        [include]="['facebook','twitter','linkedin', 'whatsapp','messenger','email','print','copy']"
+        [show]="4"
+        [showText]="true"
+        [url]="'https://durangueneidad.com'+router.url"
+        [title]="book.titulo"
+        [description]="book.descripcion"
+        [image]="'https://extra.durangueneidad.com/'+book.imagen_portada"
+        [tags]="tags"
+       ></share-buttons>
+      </div>
+    </div>
+  </div>
+  <ngx-extended-pdf-viewer [src]="'https://extra.durangueneidad.com/'+book.archivo_pdf" [height]="'100vh'"
+    [textLayer]="true" [showHandToolButton]="true"> <!-- enable text selection -->
+  </ngx-extended-pdf-viewer>
+</div>
+
+<div class="divSkel" *ngIf="isLoading">
+  <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '50%', margin: 0 }" count="1" loadingText="true"
+    appearance="line" />
+  <ngx-skeleton-loader [theme]="{ 'height': '30px', 'width': '80%', margin: 0 }" count="1" loadingText="true"
+    appearance="line" />
+  <ngx-skeleton-loader [theme]="{ 'height': '10px', 'width': '30%' }" count="1" loadingText="true" appearance="line" />
+  <ngx-skeleton-loader [theme]="{ 'height': '250px', 'width': '100%', 'margin-bottom': '2px' }" count="1"
+    loadingText="true" appearance="line" />
+  <ngx-skeleton-loader [theme]="{ 'height': '20px', 'width': '100%', 'margin-bottom': '2px' }" count="20"
+    loadingText="true" appearance="line" />
+</div>
+
+
+<dgo-loading [loading]="isLoading"></dgo-loading>

@@ -12,6 +12,13 @@ import { MetaService } from "./services/meta.service";
 import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import { ContactoPage } from "./pages/contacto/contacto.page";
 import { DataService } from "../admin/services/data.service";
+import { DashboardPage } from "./pages/dashboard/dashboard.page";
+import { LibraryPage } from "./pages/library/library.page";
+import { BookDetailPage } from "./pages/library/book-detail/book-detail.page";
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 @NgModule({
     imports: [
@@ -20,7 +27,11 @@ import { DataService } from "../admin/services/data.service";
       HomeRoutingModule,
       SharedModule,
       HttpClientModule,
-      NgxSkeletonLoaderModule
+      NgxExtendedPdfViewerModule,
+      NgxSkeletonLoaderModule,
+      FontAwesomeModule,
+      ShareIconsModule,
+      ShareButtonsModule
     ],
     providers: [
         ApiService,
@@ -31,7 +42,11 @@ import { DataService } from "../admin/services/data.service";
         HomePage,
         BiografiaPage,
         DetailPage,
-        ContactoPage
+        ContactoPage,
+        DashboardPage,
+        LibraryPage,
+        BookDetailPage
     ]
   })
-  export class HomePageModule {}
+  export class HomePageModule {
+  }

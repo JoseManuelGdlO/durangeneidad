@@ -1,7 +1,17 @@
 
-<app-header></app-header>
 
 <body *ngIf="!isLoading" class="content">
+    
+    <share-buttons  theme="material-dark"
+    [include]="['facebook','twitter','linkedin', 'whatsapp','messenger','email','print','copy']"
+    [show]="4"
+    [showText]="true"
+    [url]="'https://durangueneidad.com'+router.url"
+    [title]="article.titulo"
+    [description]="article.descripcion"
+    [image]="'https://extra.durangueneidad.com/'+article.imagen_portada"
+    [tags]="tags"
+   ></share-buttons>
     <h5 class="content___date">
         {{article.lugar}} / {{article.creacion | date: 'MMM d, y' | titlecase }}
     </h5>
