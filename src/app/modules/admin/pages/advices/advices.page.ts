@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Editor, Toolbar } from 'ngx-editor';
 import Quill from 'quill';
 
 @Component({
@@ -11,44 +13,72 @@ export class AdvicesPage implements OnInit {
 
   @ViewChild('quillEditor') quillEditor!: ElementRef;
   public quillInstance!: Quill;
+  editor!: Editor;
+  body = '';
+  toolbar: Toolbar = [
+    // default value
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    // or, set options for link:
+    //[{ link: { showOpenInNewTab: false } }, 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
+    ['superscript', 'subscript'],
+    ['undo', 'redo'],
+  ];
 
   filtro: string = '';
   advices: any[] = [];
   advicesFiltered: any[] = [];
   advice = { descripcion: '', autor: '', date: '', id: 0};
   isLoading = true;
+  articleForm = new FormGroup({
+    descripcion: new FormControl('', [Validators.required]),
+    autor: new FormControl('', [Validators.required]),
+    date: new FormControl('', [Validators.required]),
+  });
 
   constructor(public http: HttpClient) {}
 
   ngOnInit(): void {
+    this.editor = new Editor();
     this.getAdvices();
   }
 
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
   ngAfterViewInit(): void {
-    this.quillInstance = new Quill(this.quillEditor.nativeElement, {
-      modules: {
-        toolbar: [
-          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                ['blockquote', 'code-block'],
+    // this.quillInstance = new Quill(this.quillEditor.nativeElement, {
+    //   modules: {
+    //     toolbar: [
+    //       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    //             ['blockquote', 'code-block'],
 
-                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-                [{ 'direction': 'rtl' }],                         // text direction
+    //             [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    //             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    //             [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    //             [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    //             [{ 'direction': 'rtl' }],                         // text direction
 
-                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                [ 'link', 'image', 'video', 'formula' ],          // add's image support
-                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-                [{ 'font': [] }],
-                [{ 'align': [] }],
+    //             [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    //             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    //             [ 'link', 'image', 'video', 'formula' ],          // add's image support
+    //             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    //             [{ 'font': [] }],
+    //             [{ 'align': [] }],
 
-                ['clean']          
-        ],
-      },
-      theme: 'snow' // o 'bubble'
-    });
+    //             ['clean']          
+    //     ],
+    //   },
+    //   theme: 'snow' // o 'bubble'
+    // });
   }
 
   getAdvices() {
@@ -71,8 +101,20 @@ export class AdvicesPage implements OnInit {
     );
   }
 
+  putItems(adv: any){
+    this.advice = adv;
+    this.articleForm.patchValue({
+      descripcion: adv.descripcion,
+      autor: adv.autor,
+      date: adv.fecha,
+    });
+  }
+
   updateConfiguration() {
-    this.advice.descripcion = this.quillInstance.root.innerHTML;
+    this.advice.descripcion = this.articleForm.value.descripcion ? this.articleForm.value.descripcion : ''; 
+    this.advice.autor = this.articleForm.value.autor ? this.articleForm.value.autor : '';
+    this.advice.date = this.articleForm.value.date ? this.articleForm.value.date : '';
+
     if(this.advice.descripcion === '' || this.advice.autor === '' || this.advice.date === '') {
       return;
     }
@@ -86,7 +128,7 @@ export class AdvicesPage implements OnInit {
       .post(`https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/avisos`, this.advice, { headers: headers } )
       .subscribe((data: any) => {
         this.advice = { descripcion: '', autor: '', date: '', id: 0};
-        this.quillInstance.setText('');
+        this.articleForm.reset();
         this.getAdvices();
       });
   }

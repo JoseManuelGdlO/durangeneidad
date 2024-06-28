@@ -33,8 +33,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/quill/dist/quill.snow.css",
+              "src/styles.scss",s
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "node_modules/ngx-sharebuttons/themes/material.scss"

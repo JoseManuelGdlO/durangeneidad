@@ -5,24 +5,33 @@
             <h5>Editar Aviso</h5>
         </div>
         <div class="card-body">
-            <form (ngSubmit)="updateConfiguration()" #form="ngForm">
+            <form (ngSubmit)="updateConfiguration()" [formGroup]="articleForm">
                 <div class="mb-3">
                     <label for="codigo" class="form-label">Descricpion</label>
-                    <div id="nota" #quillEditor class="mb-3"></div>
+                    <!-- <div id="nota" #quillEditor class="mb-3"></div> -->
+                    <div id="nota" class="NgxEditor__Wrapper">
+                        <ngx-editor-menu
+                          [editor]="editor"
+                          [toolbar]="toolbar"> </ngx-editor-menu>
+                        <ngx-editor
+                          [editor]="editor"
+                          name="descripcion"
+                          formControlName="descripcion"
+                          [placeholder]="'Type here...'"
+                        ></ngx-editor>
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="autor" class="form-label">Autor</label>
-                    <input type="text" class="form-control" id="autor" name="autor"
-                        [(ngModel)]="advice.autor" required>
+                    <input type="text" class="form-control" id="autor" name="autor" formControlName="autor" required>
                 </div>
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha"
-                        [(ngModel)]="advice.date" required>
+                    <input type="date" class="form-control" id="date" name="date" formControlName="date" required>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button (click)="advice = { id: 0, descripcion: '', autor: '', date: '' }; quillInstance.setText('');" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" [disabled]="this.articleForm.errors" class="btn btn-primary">Guardar</button>
+                    <button (click)="advice = { id: 0, descripcion: '', autor: '', date: '' }; articleForm.reset()" class="btn btn-danger">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -59,7 +68,7 @@
                             <p class="list-group-item-text">{{ adv.fecha | date }}</p>
                         </div>
                         <div class="col-md-1">
-                            <button (click)="advice = adv; quillInstance.root.innerHTML = adv.descripcion; advice.date = advice.date.split('T')[0]" class="btn btn-primary btn-sm">Editar</button>
+                            <button (click)="putItems(adv)" class="btn btn-primary btn-sm">Editar</button>
                         </div>
                     </div>
                 </div>

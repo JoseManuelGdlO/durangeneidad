@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.3",
     "lottie-web": "^5.12.2",
     "ng2-pdf-viewer": "^10.2.1",
+    "ngx-editor": "^17.5.4",
     "ngx-extended-pdf-viewer": "^20.0.1",
     "ngx-lottie": "^11.0.2",
     "ngx-sharebuttons": "^13.0.0",

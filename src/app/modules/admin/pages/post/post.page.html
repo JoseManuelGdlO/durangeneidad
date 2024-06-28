@@ -10,7 +10,17 @@
       <textarea name="story" rows="3" cols="33" class="form-control" id="titulo" name="titulo" formControlName="titulo" required></textarea>
     </div>
     <label for="nota" class="form-label">Articulo<span style="color: red;">*</span>:</label>
-    <div id="nota" #quillEditor class="mb-3"></div>
+    <!-- <div id="nota" #quillEditor class="mb-3"></div> -->
+    <div id="nota" class="NgxEditor__Wrapper">
+      <ngx-editor-menu
+        [editor]="editor"
+        [toolbar]="toolbar"> </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor"
+        formControlName="body"
+        [placeholder]="'Type here...'"
+      ></ngx-editor>
+    </div>
     <div class="mb-3">
       <label for="creador" class="form-label">Autor<span style="color: red;">*</span>:</label>
       <input type="text" class="form-control" id="creador" name="creador" formControlName="creador" required>

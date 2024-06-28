@@ -21,7 +21,7 @@ export class SettingsPage implements OnInit {
   }
 
   getConfigurations() {
-    this.http.get('http://localhost:8000/durangeneidad/configuraciones').subscribe((data: any) => {
+    this.http.get('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/configuraciones').subscribe((data: any) => {
       this.configurations = data.data;
       this.aplicarFiltro();
       this.isLoading = false;
@@ -59,7 +59,7 @@ export class SettingsPage implements OnInit {
 
 
     this.http
-      .post(`http://localhost:8000/durangeneidad/configuraciones`, this.configuration, { headers: headers } )
+      .post(`https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/configuraciones`, this.configuration, { headers: headers } )
       .subscribe((data: any) => {
         this.getConfigurations();
       });
@@ -80,7 +80,7 @@ export class SettingsPage implements OnInit {
     formData.append('id', this.configuration.id.toString());
 
     this.http
-      .post(`http://localhost:8000/durangeneidad/configuracionesImagen`, formData, { headers: headers } )
+      .post(`https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/configuracionesImagen`, formData, { headers: headers } )
       .subscribe((data: any) => {
         this.getConfigurations();
       });
