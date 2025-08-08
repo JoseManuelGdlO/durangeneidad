@@ -25,6 +25,8 @@ export class DetailPage implements OnInit {
     this.isLoading = true;
     this.metaService.setURL(this.router.url);
     this.route.params.subscribe((params: any) => {
+      console.log(params);
+      
       this.getData(params.id);
       this.metaService.setTitle(params.title);
     });
@@ -34,6 +36,8 @@ export class DetailPage implements OnInit {
     this.apiService
       .getDetail(id)
       .then((response: any) => {
+        console.log(response);
+        
         this.article = response.data[0];
         this.tags = response.tags.map((x: any) => x.label).join(', ');
         this.metaService.updateMetaTags({

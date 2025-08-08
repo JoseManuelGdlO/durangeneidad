@@ -89,7 +89,7 @@ export class ApiService {
     headers = headers.set('Authorization', `Bearer ${token}`);
 
     return new Promise((resolve, reject) => {
-      this.http.get('https://d2jj0rul8wm06l.cloudfront.net/durangeneidad/getDetail?code=' + id, { headers }).subscribe(
+      this.http.get('http://d2jj0rul8wm06l.cloudfront.net/durangeneidad/getDetail?code=' + id, { headers }).subscribe(
         (response) => {
           resolve(response);
         },

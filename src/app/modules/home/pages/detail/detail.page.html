@@ -20,7 +20,7 @@
     <h5 style="color: red;" class="content___date">
        Por {{article.creador}} 
     </h5>
-    <div [innerHTML]="article.body"></div>
+    <div class="body" style="width: 100%; overflow-x: clip; text-align: justify;" [innerHTML]="article.body"></div>
 </body>
 
 <div class="divSkel" *ngIf="isLoading">

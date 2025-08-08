@@ -211,13 +211,13 @@ export class PostPage implements AfterViewInit, OnInit {
 
     const completeTags = this.articleForm.value.tags?.split(',').map((tag) => ({ label: tag.trim() })); // Convierte la cadena de tags en un arreglo de objetos
 
-    const articleBody = this.quillInstance.root.innerHTML; // Obtiene el contenido del editor Quill
+    // const articleBody = this.quillInstance.root.innerHTML; // Obtiene el contenido del editor Quill
     const body = {
       article: {
         creador: this.articleForm.value.creador,
         creacion: this.creacion,
         titulo: this.articleForm.value.titulo,
-        body: articleBody,
+        body: this.articleForm.value.body,
         lugar: this.articleForm.value.lugar,
         thumb: this.articleForm.value.imagen,
         descripcion: this.articleForm.value.descripcion,
